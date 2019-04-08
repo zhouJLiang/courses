@@ -2,7 +2,8 @@ package com.q.courses.controller;
 
 import com.q.courses.code.CourseCode;
 import com.q.courses.dao.UserDAO;
-import com.q.courses.entity.User;
+import com.q.courses.dao.UserMapper;
+import com.q.courses.po.User;
 import com.q.courses.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +18,17 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController{
 
+    @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @RequestMapping("/getUser")
     public User getUser(@RequestParam("userID")int userID) {
-        User user = userDAO.selectByPrimaryKey(userID);
+        User user = userMapper.selectByPrimaryKey(Long.valueOf(userID));
         if (user != null) {
             return user;
         }
@@ -37,7 +42,8 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(MD5Util.toMd5(password));
         user.setDatetime(new Date());
-        userDAO.insertUser(user);
+        System.out.println(user.toString());
+        userMapper.insert(user);
         return CourseCode.SUCCESS;
     }
 

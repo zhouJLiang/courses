@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+          PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+          "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--重复点击 生成  会导致xml中得数据重复 -->
+<generatorConfiguration>
+    <!-- context 生成一组对象得环境 -->
+    <context id="mysql" targetRuntime="Mybatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接驱动 地址 账号 密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.99.100/course" userId="root" password="123456"/>
+
+        <!-- 指定生成类型为java类型,避免数据库中number 等类型字段-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成model-->
+        <javaModelGenerator targetPackage="po" targetProject="src/main/java/com/q/courses">
+            <!--<property name="enableSubPackages" value="true"/>-->
+            <!--<property name="trimString" value="true"/>-->
+        </javaModelGenerator>
+
+        <!-- 生成mapper-->
+        <sqlMapGenerator targetPackage="/" targetProject="src/main/resources/xml">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!-- 生成 DAO-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="dao" targetProject="src/main/java/com/q/courses">
+                         <property name="enableSubPackages" value="true"/>
+         </javaClientGenerator>
+
+        <!-- 数据库 中要先建表-->
+        <table tableName="t_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--<generatedKey column="uid" sqlStatement="selectuuid_short()" identity="false"/>-->
+        </table>
+    </context>
+</generatorConfiguration>

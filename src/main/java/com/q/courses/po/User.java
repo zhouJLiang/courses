@@ -1,29 +1,21 @@
-package com.q.courses.entity;
-
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+package com.q.courses.po;
 
 import java.util.Date;
 
-/**
- * @Author zjl
- * @Date: 2019/4/8 16:04
- */
-@Data
-@Setter
-@Getter
 public class User {
-    private int id;
+    private Long id;
+
     private String username;
+
     private String password;
+
     private Date datetime;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

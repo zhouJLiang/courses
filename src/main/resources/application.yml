@@ -7,4 +7,8 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
-  mapperLocation: classpath:mybatis/*.xml
+  mapperLocation: classpath:xml/*.xml
+  configuration:
+    use-column-lable: true
+server:
+  port: 8090
