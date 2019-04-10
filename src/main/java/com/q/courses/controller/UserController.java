@@ -1,49 +1,42 @@
 package com.q.courses.controller;
 
 import com.q.courses.code.CourseCode;
-import com.q.courses.dao.UserDAO;
 import com.q.courses.dao.UserMapper;
-import com.q.courses.po.User;
+import com.q.courses.entity.User;
+import com.q.courses.service.UserService;
 import com.q.courses.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author zjl
  * @Date: 2019/4/8 16:10
  */
-@RestController
-@RequestMapping("/user")
+@Controller
 public class UserController{
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private UserMapper userMapper;
-
+    private UserService userService;
     @RequestMapping("/getUser")
-    public User getUser(@RequestParam("userID")int userID) {
-        User user = userMapper.selectByPrimaryKey(Long.valueOf(userID));
-        if (user != null) {
-            return user;
+    public String getUser(@RequestParam("userID")long userID) {
+        User user = userService.getUser(userID);
+        if(user!= null){
+            System.out.println(user.toString());
+        }else{
+            System.out.println("no");
         }
-        return null;
-
+        return "index";
     }
 
     @RequestMapping("/create")
     public String insertUser(@RequestParam("username") String username, @RequestParam("password") String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(MD5Util.toMd5(password));
-        user.setDatetime(new Date());
-        System.out.println(user.toString());
-        userMapper.insert(user);
+
         return CourseCode.SUCCESS;
     }
 

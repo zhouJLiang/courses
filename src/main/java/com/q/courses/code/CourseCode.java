@@ -11,5 +11,4 @@ public class CourseCode {
     /** 查询不存在 */
     public static final String QUARY_NOT_EXIT = "1";
 
-
 }
