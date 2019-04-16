@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,6 +37,14 @@ public class UserService {
         user.setDatetime(new Date());
         userMapper.insert(user);
         return 1;
+    }
+
+    /**
+     * 选择所有 u用户
+     * @return
+     */
+    public List<User> getAllUsers(){
+        return userMapper.selectAll();
     }
 
 }
