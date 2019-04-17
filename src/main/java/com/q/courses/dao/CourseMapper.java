@@ -16,10 +16,13 @@ import java.util.List;
 public interface CourseMapper {
     @Insert("insert into t_course(cid,courseName,numOfWeek,teacherid) values(#{cid},#{courseName},#{numOfWeek},#{teacherid})")
     int insert(Course course);
+
     @Delete("delete from t_course where cid = #{cid}")
     int delCourseByPrimaryID(long cid);
+
     @Select("select * from t_course where cid = #{cid}")
     Course selectCourseByCid(long cid);
+
     @Select("select * from t_course")
     List<Course> seleclAll();
 }

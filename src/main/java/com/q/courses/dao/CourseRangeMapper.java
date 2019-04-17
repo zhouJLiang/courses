@@ -14,10 +14,13 @@ import java.util.List;
 public interface CourseRangeMapper {
     @Insert("insert into t_courseRange(cid,term,week,day,lesson,teacherId,courseID) values(#{cid},#{term},#{week},#{day},#{lesson},#{teacherId},#{courseID})")
     int insert(CourseRange courseRange);
+
     @Delete("delete from t_courseRange where cid = #{cid}")
     int delCourseByPrimaryID(long cid);
+
     @Select("select * from t_courseRange where cid = #{cid}")
     CourseRange selectCourseRangeByCid(long cid);
+
     @Select("select * from t_courseRange")
     List<CourseRange> seleclAll();
 }

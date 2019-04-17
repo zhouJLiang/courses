@@ -5,7 +5,7 @@ package com.q.courses.code;
  * @Date: 2019/4/8 16:40
  */
 public class CourseCode {
-    public static final String SUCCESS = "suc";
+    public static final String SUCCESS = "success";
     public static final String FAIL = "fail";
 
     /** 查询不存在 */
