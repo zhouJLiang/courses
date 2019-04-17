@@ -14,10 +14,13 @@ import java.util.List;
 public interface StudentMapper {
     @Insert("insert into t_student(sid,sname,age,gradeID) values(#{sid},#{sname},#{age},#{gradeID})")
     int insert(Student student);
+
     @Delete("delete from t_student where sid = #{sid}")
     int delCourseByPrimaryID(long cid);
+
     @Select("select * from t_student where sid = #{sid}")
     Student selectCourseByCid(long sid);
+
     @Select("select * from t_student")
     List<Student> seleclAll();
 }

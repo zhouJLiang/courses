@@ -23,4 +23,7 @@ public interface CourseRangeMapper {
 
     @Select("select * from t_courseRange")
     List<CourseRange> seleclAll();
+
+    @Select("select * from t_courseRange where term = #{term}")
+    List<CourseRange> selectAllByTerm(int term);
 }

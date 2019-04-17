@@ -1,10 +1,7 @@
 package com.q.courses.dao;
 
 import com.q.courses.entity.Course;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -14,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface CourseMapper {
-    @Insert("insert into t_course(cid,courseName,numOfWeek,teacherid) values(#{cid},#{courseName},#{numOfWeek},#{teacherid})")
+    @Insert("insert into t_course(cid,courseName,numOfWeek,teacherId,term) values(#{cid},#{courseName},#{numOfWeek},#{teacherId},#{term})")
     int insert(Course course);
 
     @Delete("delete from t_course where cid = #{cid}")
@@ -24,5 +21,14 @@ public interface CourseMapper {
     Course selectCourseByCid(long cid);
 
     @Select("select * from t_course")
-    List<Course> seleclAll();
+    List<Course> selectAllCourses();
+
+    @Select("select * from t_course where term = #{term}")
+    List<Course> selectAllCourseByTerm(int term);
+
+    @Select("select * from t_course where term = #{term} and grade = #{grade} and classNum = #{grade}")
+    List<Course> selectAllTeachingClassCourse(int term,int grade,int classNum);
+
+    @Update("update t_course set term=#{term},courseName =#{courseName},numOfWeek=#{numOfWeek},teacherid=#{teacherid}")
+    int update(Course course);
 }

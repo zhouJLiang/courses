@@ -29,6 +29,8 @@ create table `t_course`(
                          `teacherid` bigint(11) default null,
                          primary key (`cid`)
 )engine=InnoDB default charset=utf8;
+alter table `t_course` add term int(2);
+alter table `t_course` change teacherid teacherId bigint(11);
 
 create table `t_courseRange`(
                         `cid` bigint(11) not null AUTO_INCREMENT,
