@@ -23,7 +23,7 @@ new Vue({
                     this.$message({
                         message: '两次输入的密码不相同',
                         type: 'warning',
-                        duration: 6000
+                        duration: 3000
                     }),
                 );
                 // 清空表单状态
@@ -47,7 +47,7 @@ new Vue({
                                     this.$message({
                                         message: result.body.message,
                                         type: 'warning',
-                                        duration: 6000
+                                        duration: 3000
                                     }),
                                 );
                                 // 清空表单状态

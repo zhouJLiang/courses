@@ -21,4 +21,7 @@ public interface UserMapper {
 
     @Update("update t_user set username=#{username},password=#{password} where id = #{id}")
     int updateByPrimaryKey(User record);
+
+    @Select("select * from t_user where  username = #{username}")
+    User selectUserByUserName(String username);
 }

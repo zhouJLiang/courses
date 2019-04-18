@@ -11,4 +11,6 @@ public class CourseCode {
     /** 查询不存在 */
     public static final String QUARY_NOT_EXIT = "1";
 
+    public static final String USER_BEEN_REGISTER ="用戶已經註冊";
+
 }
