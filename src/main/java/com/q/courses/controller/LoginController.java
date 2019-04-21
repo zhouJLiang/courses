@@ -1,13 +1,11 @@
 package com.q.courses.controller;
 
-import com.q.courses.code.CourseCode;
 import com.q.courses.code.Result;
 import com.q.courses.entity.User;
 import com.q.courses.service.LoginService;
 import com.q.courses.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +22,10 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-    @RequestMapping("/login")
+    @RequestMapping("/loginin")
     @ResponseBody
     public Result login(@RequestParam("username") String username,@RequestParam("password") String password){
+        System.out.println(1);
         Result result = new Result();
         User user = loginService.getUser(username);
         if(user != null){

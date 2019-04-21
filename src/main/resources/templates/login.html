@@ -1,60 +1,126 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{../../lib/element-ui/lib/theme-chalk/index.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/login.css}">
-    <link rel="stylesheet" th:href="@{../../lib/font/icon/iconfont.css}">
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <link rel="stylesheet" href="login/css/style.css"/>
+    <!-- 提示升级高级浏览器操作 -->
+    <style>
+        .ie-content{  position: fixed; left: 0; top: 0; right: 0; bottom:0; background:#fff; z-index: 1000;}
+        .ie-content-bj{ width: 1000px; height: 380px; position: fixed; left: 50%; top: 36%; margin:-190px 0 0 -500px; background:url(img/sj.jpg) no-repeat; }
+        .ie-list{ padding:168px 0 0 371px; }
+        .ie-list a{ margin-right: 80px; }
+    </style>
 </head>
-<body>
-<div id="app">
-    <div v-if="true" id="login">
-        <el-main id="main">
-            <el-row type="flex" class="row-bg" justify="center">
-                <el-col :xs="8" :sm="9" :md="8" :lg="6" :xl="5">
-                    <el-card class="box-card">
-                        <div solt="header" class="header">
-                            <span class="item">登录</span>
-                        </div>
-                        <div id="form">
-                            <!-- 登录表单 -->
-                            <el-form :model="login" status-icon ref="login">
-                                <el-form-item prop="username"
-                                              :rules="[{ required: true, message: '用户名不能为空'}]">
-                                    <el-input prefix-icon="el-icon-ump-yonghu" v-model="login.username"
-                                              auto-complete="off"></el-input>
-                                </el-form-item>
-                                <el-form-item prop="password"
-                                              :rules="[{ required: true, message: '密码不能为空'}]">
-                                    <el-input prefix-icon="el-icon-ump-mima" type="password"
-                                              v-model="login.password" @keyup.enter.native="loginEnter('login')"
-                                              auto-complete="off"></el-input>
-                                </el-form-item>
-                                <el-form-item>
-                                    <el-checkbox class="check" v-model="login.remember">记住我</el-checkbox>
-                                </el-form-item>
-                                <el-form-item>
-                                    <el-button class="btn" type="primary" @click="submitForm('login')">登录
-                                    </el-button>
-                                </el-form-item>
-                            </el-form>
-                            <div>
-                                <p><a href="/register" class="tips">还没有账号？点我去注册</a></p>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </el-main>
+<body class="body_bj">
+
+<div class="login">
+    <form id="useLogin" class="layui-form" action="/loginin">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" autocomplete="off" placeholder="请输入賬號" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="text" name="password" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="sub">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <!--<div class="logo">-->
+        <!--<img src="login/img/logo.png" alt="">-->
+    <!--</div>-->
+    <!--<ul class="login-list">-->
+        <!--<li><input type="text" placeholder="请输入手机号码"></li>-->
+        <!--<li><input type="password" placeholder="请输入密码"></li>-->
+        <!--<li><input type="text" placeholder="请输入验证码"><span class="yzm2"><img src="login/img/yzm.jpg" alt=""></span></li>-->
+        <!--<li><a class="btn" href="首页.html">登录</a></li>-->
+        <!--<li class="tar"><a href="忘记密码.html">忘记密码？</a></li>-->
+    <!--</ul>-->
+</div>
+<!--[if lt IE 8]>
+<div class="ie-content">
+    <div class="ie-content-bj">
+        <div class="ie-list">
+            <a href="http://www.google.cn/intl/zh-CN/chrome/browser/"><img src="img/sj1.jpg" alt=""></a>
+            <a href="http://www.firefox.com.cn/"><img src="img/sj2.jpg" alt=""></a>
+            <a href="http://chrome.360.cn/"><img src="img/sj3.jpg" alt=""></a>
+        </div>
     </div>
 </div>
+<![endif]-->
+<script th:src="@{../layui/layui.all.js}"></script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form
+        // form.on("submit(sub)",function () {
+        //     login();
+        //     return false;
+        // });
+        //
+        form.on('submit(*)', function(data){
+            console.log(data);
+        });
+        form.on("submit(sub)",function (data) {
+            console.log("......................")
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            $.ajax({
+                url:'/loginin',
+                type:'get',
+                dataType:'text',
+                data:{
+                    username:$('#username').val(),
+                    password:$('#password').val(),
+                },
+                success:function(data){
+                    layer.msg('开始登录');
+                    if (data.code == 1) {
+                        layer.msg('登录成功');
+                        window.href = "index.html";
+                    }else {
+                        window.href = "index.html";
+                        layer.msg('登录失败');
+                    }
+                }
+            })
+        })
+    });
+    function login(){
+            $.post("/login",$("#useLogin").serialize(),function(data){
+                console.log("data:"+data)
+                if(data.code=="1000"){
+                    layer.alert("登录成功",function () {
+                        window.location.href="/home";
+                    });
+                }else{
+                    //$("#password").val("");
+                    picCode=drawPic();
+                    $("#code").val("");
+                    $("#smsCode").val("");
+                    layer.alert(data.message,function(){
+                        layer.closeAll();//关闭所有弹框
+                        //关闭发送验证码按钮倒计时
+                        closeSend();
+                    });
+                }
+            });
+    }
+</script>
 </body>
-<script type="text/javascript" th:src="@{../../lib/vue/vue.js}"></script>
-<!--<script type="text/javascript" th:src="@{../../lib/vue/vuex.min.js}"></script>-->
-<script type="text/javascript" th:src="@{../../lib/element-ui/lib/index.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/vue/vue-resource.js}"></script>
-<!--<script type="text/javascript" th:src="@{../../store/store.js}"></script>-->
-<!-- 核心js代码 -->
-<script type="text/javascript" th:src="@{../../js/login.js}"></script>
 </html>

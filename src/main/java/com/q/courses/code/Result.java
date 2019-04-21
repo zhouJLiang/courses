@@ -15,6 +15,7 @@ public class Result implements Serializable {
     //返回信息
     private String message;
 
+    int code = 1;
     public Result() {
     }
 
